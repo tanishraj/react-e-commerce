@@ -18,10 +18,11 @@ export const Cart = () => {
     try {
       const stripe = await stripePromise;
       const res = await makePaymentRequest.post("/api/orders", {
-        products: cartItems,
+        products: cartItems
       });
+
       await stripe.redirectToCheckout({
-        sessionId: res.data.stripeSession.id,
+        sessionId: res.data.stripeSession.id
       });
     } catch (err) {
       console.log(err);
